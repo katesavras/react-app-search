@@ -41,7 +41,6 @@ const TextArea = () => {
 
     const handleChange = async (event) => {
         setTextAreaValue(event.target.value);
-        console.log(textAreaValue.getBoundingClientRect())
         if (event.target.value === '@') {
             setIsDropdown(true)
              await getAllUsers()

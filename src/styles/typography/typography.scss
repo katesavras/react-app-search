@@ -1,0 +1,10 @@
+@use "../../public/fonts/index.scss";
+
+@mixin body-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 146.19%;
+}
+
+

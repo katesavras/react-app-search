@@ -1,9 +1,107 @@
 $black: #722e2e;
 
-.App {
-  min-height: 100vh;
-  width: 100%;
+//.App {
+//  margin: 200px 100px;
+//  width: 50%;
+//  //min-height: 100vh;
+//  //width: 100%;
+//  //display: flex;
+//  //justify-content: center;
+//  //align-items: center;
+//}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html{
+  background: linear-gradient(45deg, #184230, #3254a0);
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  height: 100%;
+}
+.App{
+  background: #fff;
+  max-width: 500px;
+  width: 90%;
+  height: 500px;
+  margin: 0 auto;
+  box-shadow: 0 1px 2px #888;
+  margin-top: 40px;
+}
+.container{
+  padding: 200px 10px 100px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.history{
+  background: linear-gradient(30deg, #ff8989, #a7009a);
+  color: #fff;
+  flex: 1 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: inset 1px 1px 5px #888;
+}
+
+.input-wrapper{
+  position: relative;
+}
+
+.textinput{
+  height: 4rem;
+  box-shadow: inset 1px 1px 2px #888;
+  border: none;
+  max-width: 100%;
+  font-size: 1.2rem;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.textinput::placeholder{
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 4rem;
+}
+
+.mentions{
+  list-style: none;
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 2px solid #888;
+  border-bottom-color: transparent;
+  position: absolute;
+  width: 100%;
+  bottom: 100%;
+  background-color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.mentions li{
+  height: 30px;
+  line-height: 30px;
+}
+
+.mentions li:first-child{
+  background: #eee;
+}
+.mentions li:hover{
+  background: #eef;
+}
+.mentions li.no-match{
+  color: #888;
+  font-style: italic;
+}
+.mentions li img{
+  height: 100%;
+  margin-right: 5px;
+  vertical-align: middle;
 }

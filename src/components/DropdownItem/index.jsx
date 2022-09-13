@@ -1,8 +1,11 @@
 import './index.scss';
 import {useState} from "react";
 
+// const selectedUsers = [];
+
 const DropdownItem = ({user: {key, name, email}, onItemClick}) => {
     const handleItemClick = () => {
+        // selectedUsers.push(email);
         onItemClick(email)
     };
 

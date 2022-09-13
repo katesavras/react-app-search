@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import './index.scss';
 import Dropdown from "../Dropdown";
 import {position, offset} from "caret-pos";
+let prevValue = '';
 
 const TextArea = () => {
     const [textAreaValue, setTextAreaValue] = useState('');
@@ -12,7 +13,8 @@ const TextArea = () => {
     const [topCursor, setTopCursor] = useState(0);
     const [leftCursor, setLeftCursor] = useState(0);
 
-    useEffect( () => {
+
+    useEffect(() => {
         setTextArea(document.querySelector('.textarea__field'))
 
         const getAllUsers = async () => {
@@ -24,13 +26,6 @@ const TextArea = () => {
         getAllUsers()
             .catch(console.error);
     }, []);
-
-    const filteredUsers = users.filter(({name, email}) => {
-        return (
-            name.toLowerCase().includes(textAreaValue.toLowerCase()) ||
-            email.toLowerCase().includes(textAreaValue.toLowerCase())
-        );
-    });
 
     const normalizeUsers = (users) => {
         const usersArr = [];
@@ -44,22 +39,27 @@ const TextArea = () => {
         return usersArr;
     };
 
-
     const handleChange = (event) => {
         setTextAreaValue(event.target.value);
-        if (event.target.value === '@') {
-            setIsDropdown(true)
-        } else if (event.target.value === '') {
-            setIsDropdown(false)
-        }
+    };
+
+    const filteredUsers = users.filter(({name, email}) => {
+        return (
+            name.toLowerCase().includes(textAreaValue.toLowerCase()) ||
+            email.toLowerCase().includes(textAreaValue.toLowerCase())
+        );
+    });
+
+    const handleItemChange = (email) => {
+        let newValue = prevValue + ' ' + email;
+        setTextAreaValue(newValue);
+        prevValue = newValue;
+        setIsDropdown(false)
     };
 
     const handleLKeyUp = (e) => {
-        console.log(users)
-        console.log(textAreaValue)
-        console.log(filteredUsers)
         let pos = position(textArea);
-        // let off = offset(textArea);
+
         if (e.key === '@') {
             setTopCursor(pos.top + 55)
             setLeftCursor(pos.left - 21)
@@ -67,20 +67,16 @@ const TextArea = () => {
         }
     };
 
-    const handleItemChange = (email) => {
-        setTextAreaValue(email)
-        setIsDropdown(false)
-    };
-
-    const handleDropdownElement =(el)=>{
+    const handleDropdownElement = (el) => {
         setDropDown(el)
-        console.log(dropDown)
     }
 
     return <div className='textarea'>
     <textarea className='textarea__field'
-              value={textAreaValue} onChange={handleChange} onKeyUp={handleLKeyUp} />
-        {isDropdown && <Dropdown onItemChange={handleItemChange} users={filteredUsers} topPos={topCursor} leftPos={leftCursor} getDropdownEl={handleDropdownElement}/>}
+              value={textAreaValue} onChange={handleChange} onKeyUp={handleLKeyUp}/>
+        {isDropdown &&
+            <Dropdown onItemChange={handleItemChange} users={users} topPos={topCursor} leftPos={leftCursor}
+                      getDropdownEl={handleDropdownElement}/>}
     </div>;
 };
 

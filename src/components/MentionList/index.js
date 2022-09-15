@@ -1,13 +1,14 @@
 import React from "react";
 
-const MentionList = ({mentions, onSelect}) => {
+const MentionList = ({cursorPos, mentions, onSelect}) => {
+    console.log(cursorPos)
     const usersLi = mentions.map(u =>
         <li onClick={_ => onSelect(u)} key={u.login}>
             <img src={u.avatar_url}/>
             <span>{u.login}</span>
         </li>);
 
-    return <ul className="mentions">
+    return <ul className="mentions" style={{left: `${cursorPos.left}px`, top: `${cursorPos.top + cursorPos.height}px`,}}>
         {usersLi.length === 0 ? <li className="no-match">No match found</li> : usersLi}
     </ul>;
 }

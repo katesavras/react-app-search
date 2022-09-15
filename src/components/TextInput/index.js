@@ -1,4 +1,6 @@
 import React from "react";
+import {useState, useRef, useEffect} from "react";
+import {position} from "caret-pos";
 
 class TextInput extends React.Component {
     constructor(props) {
@@ -15,11 +17,15 @@ class TextInput extends React.Component {
     }
 
     onChange(evt) {
+        let cursorPos = position(this.textarea)
         const text = evt.target.value;
-        this.props.onChange(text, evt.target.selectionStart);
+        this.props.onChange(text, evt.target.selectionStart, cursorPos);
+
     }
 
     focus(pos) {
+        console.log("textArea focus:", pos)
+        console.log(this.textarea);
         if (this.textarea) {
             this.textarea.focus();
         }
@@ -34,9 +40,45 @@ class TextInput extends React.Component {
                          onKeyDown={this.onKeyDown}
                          ref={_ => this.textarea = _}
                          className="textinput"
-                         placeholder="Type message here"
         />
     }
 }
 
+// const TextInput = (props) => {
+//     const [text, setText] = useState('');
+//     let textareaRef = document.querySelector('.textinput') ;
+//     console.log(textareaRef)
+//
+//     const onKeyDown = (evt) => {
+//         if (evt.keyCode === 9) {
+//             evt.preventDefault();
+//             props.onTabPress();
+//         }
+//     }
+//
+//     const onChange = (evt) => {
+//         setText(evt.target.value)
+//         props.onChange(text, evt.target.selectionStart);
+//     }
+//
+//     const focus = (pos) => {
+//         console.log(pos)
+//         console.log(textareaRef)
+//         if (textareaRef) {
+//             textareaRef.focus();
+//         }
+//         if (pos) {
+//             textareaRef.selectionEnd = pos;
+//         }
+//     }
+//
+//
+//     return <textarea value={props.text}
+//                      onChange={onChange}
+//                      onKeyDown={onKeyDown}
+//                      // ref={node => { textareaRef = node; }}
+//                      className="textinput"
+//                      placeholder="Type message here"
+//     />
+// }
 export default TextInput;

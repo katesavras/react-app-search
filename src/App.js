@@ -44,7 +44,6 @@ class App extends React.Component{
 
     onTabPress(){
         const {text, queryStart, mentions} = this.state;
-        console.log(text, queryStart, mentions)
         if(queryStart && mentions && mentions.length > 0){
             this.completeMention(mentions[0]);
         }

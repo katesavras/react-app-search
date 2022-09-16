@@ -24,8 +24,6 @@ class TextInput extends React.Component {
     }
 
     focus(pos) {
-        console.log("textArea focus:", pos)
-        console.log(this.textarea);
         if (this.textarea) {
             this.textarea.focus();
         }

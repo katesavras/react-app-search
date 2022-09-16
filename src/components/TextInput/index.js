@@ -1,5 +1,5 @@
 import React from "react";
-import {useState, useRef, useEffect} from "react";
+// import {useState, useRef, useEffect} from "react";
 import {position} from "caret-pos";
 
 class TextInput extends React.Component {
@@ -35,7 +35,7 @@ class TextInput extends React.Component {
     }
 
     render() {
-        return <textarea value={this.props.text}
+        return <textarea value={this.props.text} maxLength='100'
                          onChange={this.onChange.bind(this)}
                          onKeyDown={this.onKeyDown}
                          ref={_ => this.textarea = _}
@@ -46,7 +46,7 @@ class TextInput extends React.Component {
 
 // const TextInput = (props) => {
 //     const [text, setText] = useState('');
-//     let textareaRef = document.querySelector('.textinput') ;
+//     let textareaRef = useRef() ;
 //     console.log(textareaRef)
 //
 //     const onKeyDown = (evt) => {
@@ -62,8 +62,6 @@ class TextInput extends React.Component {
 //     }
 //
 //     const focus = (pos) => {
-//         console.log(pos)
-//         console.log(textareaRef)
 //         if (textareaRef) {
 //             textareaRef.focus();
 //         }
@@ -76,7 +74,7 @@ class TextInput extends React.Component {
 //     return <textarea value={props.text}
 //                      onChange={onChange}
 //                      onKeyDown={onKeyDown}
-//                      // ref={node => { textareaRef = node; }}
+//                      ref={textareaRef}
 //                      className="textinput"
 //                      placeholder="Type message here"
 //     />

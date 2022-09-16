@@ -1,7 +1,6 @@
 import React from "react";
 
 const MentionList = ({cursorPos, mentions, onSelect}) => {
-    console.log(cursorPos)
     const usersLi = mentions.map(u =>
         <li onClick={_ => onSelect(u)} key={u.login}>
             <img src={u.avatar_url}/>

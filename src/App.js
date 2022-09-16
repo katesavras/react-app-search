@@ -2,7 +2,7 @@ import './App.scss';
 import React from 'react';
 import TextInput from "./components/TextInput";
 import MentionList from "./components/MentionList";
-import {findMentionQuery, findMentionQueryStart, findMentionQueryEnd, debounce, searchGithubUsers, isValidUserIDChar} from "./components/Utils/index";
+import {findMentionQuery, findMentionQueryStart, findMentionQueryEnd, debounce, searchGithubUsers} from "./components/Utils/index";
 
 class App extends React.Component{
     constructor(){

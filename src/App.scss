@@ -5,11 +5,12 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 html{
-  //background: linear-gradient(180deg, orange, white);
   font-family: 'Roboto', sans-serif;
   height: 100%;
 }
+
 .App{
   background: #fff;
   max-width: 500px;
@@ -27,26 +28,13 @@ html{
   height: 100%;
 }
 
-
-.history{
-  color: #fff;
-  flex: 1 0 auto;
-  margin-bottom: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-}
-
 .input-wrapper{
   position: relative;
 }
 
 .textinput{
   font-family: 'Roboto', sans-serif !important;
-  height: 300px;
+  height: 200px;
   border-radius: 10px;
   box-shadow: 0 1px 2px #888;
   max-width: 100%;
@@ -60,12 +48,6 @@ html{
   }
 }
 
-.textinput::placeholder{
-  text-align: center;
-  font-size: 0.8rem;
-  line-height: 4rem;
-}
-
 .mentions{
   list-style: none;
   max-height: 200px;
@@ -73,7 +55,8 @@ html{
   border: 2px solid #888;
   position: absolute;
   z-index: 10;
-  width: 40%;
+  width: 50%;
+  min-width: 200px;
   background-color: #fff;
   border-radius: 5px;
 }
@@ -91,6 +74,8 @@ html{
 }
 .mentions li.no-match{
   color: #888;
+  padding-left: 20px;
+  padding-top: 5px;
   font-style: italic;
 }
 .mentions li img{

@@ -1,6 +1,6 @@
 import React from "react";
 // import {useState, useRef, useEffect} from "react";
-import {position} from "caret-pos";
+import {offset, position} from "caret-pos";
 
 class TextInput extends React.Component {
     constructor(props) {
@@ -19,8 +19,15 @@ class TextInput extends React.Component {
     onChange(evt) {
         let cursorPos = position(this.textarea)
         const text = evt.target.value;
-        this.props.onChange(text, evt.target.selectionStart, cursorPos);
-
+        let beforeText = text.substring(0, evt.target.selectionStart)
+        let arrayText = beforeText.split(' ');
+        let lastArrayElement = arrayText[arrayText.length - 1]
+        let spanObj = document.createElement('span');
+        spanObj.innerHTML = lastArrayElement;
+        this.textWrap.appendChild(spanObj);
+        console.log(this.textWrap.clientWidth)
+        this.props.onChange(text, evt.target.selectionStart, cursorPos, this.textWrap.offsetWidth);
+        spanObj.innerHTML = '';
     }
 
     focus(pos) {
@@ -33,12 +40,16 @@ class TextInput extends React.Component {
     }
 
     render() {
-        return <textarea value={this.props.text} maxLength='100'
-                         onChange={this.onChange.bind(this)}
-                         onKeyDown={this.onKeyDown}
-                         ref={_ => this.textarea = _}
-                         className="textinput"
-        />
+        return<div>
+               <div  className="textwrap"  ref={_ => this.textWrap = _}></div>
+                 <textarea value={this.props.text} maxLength='100'
+                           onChange={this.onChange.bind(this)}
+                           onKeyDown={this.onKeyDown}
+                           ref={_ => this.textarea = _}
+                           className="textinput"
+                 />
+        </div>
+
     }
 }
 

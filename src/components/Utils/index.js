@@ -6,7 +6,9 @@ export const findMentionQueryStart = (text, pos) => {
 
     if (i < 0) return null;
 
-    if (text[i] === '@') return i + 1;
+    if (text[i] === '@'){
+        return i + 1
+    }
     return null;
 }
 

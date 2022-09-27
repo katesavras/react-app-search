@@ -7,13 +7,13 @@ import {findMentionQuery, findMentionQueryStart, findMentionQueryEnd, debounce, 
 class App extends React.Component{
     constructor(){
         super();
-        this.state = {text: '', queryStart: null, mentions:[], cursorPos: {}};
+        this.state = {text: '', queryStart: null, mentions:[], cursorPos: {}, textWidth: ''};
         this.queryUsers = debounce(this.queryUsers, 400);
     }
 
-    onTextChange(text, pos, cursorPos){
+    onTextChange(text, pos, cursorPos, textWidth){
         const queryStart = findMentionQueryStart(text, pos);
-        this.setState({text,queryStart, cursorPos}, () =>{
+        this.setState({text,queryStart, cursorPos, textWidth}, () =>{
             if(queryStart){
                 const query = findMentionQuery(text, queryStart);
                 if(query)
@@ -50,11 +50,12 @@ class App extends React.Component{
     }
 
     render(){
-        const {text, mentions, queryStart, cursorPos} = this.state;
+        const {text, mentions, queryStart, cursorPos, textWidth} = this.state;
         return <div className="container">
             <div className="input-wrapper">
                 {queryStart ?
                     <MentionList
+                        textWidth={textWidth}
                         cursorPos={cursorPos}
                         mentions ={mentions}
                         onSelect={this.onMentionSelect.bind(this)}/>
